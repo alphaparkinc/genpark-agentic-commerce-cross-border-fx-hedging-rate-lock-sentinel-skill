@@ -1,0 +1,76 @@
+{
+  "name": "genpark-agentic-commerce-cross-border-fx-hedging-rate-lock-sentinel-skill",
+  "title": "Cross-Border FX Hedging & Rate Lock Sentinel Skill",
+  "version": "1.0.0",
+  "description": "Real-time foreign exchange volatility monitoring, cross-border multi-currency invoice cost projection, and automated forward contract rate-lock advisor. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "organization": {
+    "name": "GenPark Inc.",
+    "url": "https://www.genpark.ai",
+    "linkedin": "https://www.linkedin.com/company/92955550"
+  },
+  "mcp_version": "2024-11-05",
+  "category": "agentic-commerce",
+  "tools": [
+    {
+      "name": "evaluate_fx_exposure_and_rate_lock",
+      "description": "Evaluate purchasing currency exposure risk against historic volatility and recommend optimal forward rate lock vs spot execution.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "base_currency": {
+            "type": "string",
+            "description": "e.g. USD"
+          },
+          "counter_currency": {
+            "type": "string",
+            "description": "e.g. EUR, JPY, GBP"
+          },
+          "invoice_amount_counter_curr": {
+            "type": "number"
+          },
+          "current_spot_rate": {
+            "type": "number"
+          },
+          "payment_due_days": {
+            "type": "integer"
+          },
+          "annualized_fx_volatility_pct": {
+            "type": "number",
+            "description": "e.g. 8.5 for 8.5%"
+          }
+        },
+        "required": [
+          "base_currency",
+          "counter_currency",
+          "invoice_amount_counter_curr",
+          "current_spot_rate",
+          "payment_due_days"
+        ]
+      }
+    },
+    {
+      "name": "simulate_fx_scenario_sensitivity",
+      "description": "Simulate procurement budget variance under +/- 3% and +/- 5% FX currency shocks.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "invoice_amount_counter_curr": {
+            "type": "number"
+          },
+          "current_spot_rate": {
+            "type": "number"
+          },
+          "locked_forward_rate": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "invoice_amount_counter_curr",
+          "current_spot_rate",
+          "locked_forward_rate"
+        ]
+      }
+    }
+  ]
+}
